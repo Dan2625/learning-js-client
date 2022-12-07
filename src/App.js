@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -12,14 +12,6 @@ const cookies = new Cookies();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  /*   useEffect(() => {
-    const userInfo = localStorage.getItem('isLoggedIn');
-
-    if (userInfo === '1') {
-      setIsLoggedIn(true);
-    }
-  }, []); */
 
   // CONNECT AND CONFIGURATION WITH SERVER
 
@@ -45,13 +37,6 @@ function App() {
       });
   };
 
-  //FOR NOW WITH LOCAL HOST
-
-  /*   const loginHandler = (username, password) => {
-    localStorage.setItem('isLoggedIn', '1');
-    setIsLoggedIn(true);
-  }; */
-
   const logoutHandler = () => {
     setIsLoggedIn(false);
   };
@@ -68,22 +53,6 @@ function App() {
         <ProtectedRoutes path="/lobby" component={Lobby} />
         <Route path="*">not found</Route>
       </Switch>
-      {/* <Switch>
-        <Route path="/" exact>
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login">
-          {!isLoggedIn ? (
-            <Login onLogin={loginHandler} />
-          ) : (
-            <Redirect to="/lobby" />
-          )}
-        </Route>
-        <Route path="/lobby">
-          {isLoggedIn && <Lobby onLogout={logoutHandler} />}
-        </Route>
-        <Route path="*">not found</Route>
-      </Switch> */}
     </Layout>
   );
 }
